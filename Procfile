@@ -1,0 +1,1 @@
+web gunicorn jookz.wsgi:application --log-file -
