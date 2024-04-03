@@ -14,7 +14,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'username', 'password')
+        fields = ('id', 'email', 'username', 'phone_num', 'photo' , 'password')
         extra_kwargs = {
             'username': {'required': False}
         }
@@ -45,13 +45,13 @@ class CustomUserSerializer(serializers.ModelSerializer):
 class UserMeSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'email', 'username', 'is_superuser')
+        fields = ('id', 'email', 'username', 'phone_num', 'photo')
 
 
 class CustomUserCreateSerializer(DjoserUserCreateSerializer):
 
     class Meta(DjoserUserCreateSerializer.Meta):
-        fields = DjoserUserCreateSerializer.Meta.fields
+        fields = DjoserUserCreateSerializer.Meta.fields + ('phone_num',)
 
     def validate(self, attrs):
         validated_data = super().validate(attrs)

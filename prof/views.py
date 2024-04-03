@@ -35,6 +35,12 @@ class AdminUserViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+    def update(self, request, *args, **kwargs):
+        user = get_object_or_404(User, pk=kwargs['pk'])  # Получаем пользователя, которого пытаются изменить
+        if user != request.user:  # Проверяем, является ли пользователь, отправивший запрос, тем же пользователем
+            return Response({'error': 'Вы можете изменять только свои собственные данные'}, status=status.HTTP_403_FORBIDDEN)
+        return super().update(request, *args, **kwargs)
 
 class AdminUserCreateView(generics.CreateAPIView):
     serializer_class = CustomUserCreateSerializer

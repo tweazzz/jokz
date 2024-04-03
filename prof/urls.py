@@ -25,5 +25,6 @@ urlpatterns = [
     # path('api/proffessions/', ProffessionsApi.as_view(), name='proffessions'),
     # path('api/internships/', InternshipsApi.as_view(), name='internships'),
     # path('api/news/', NewsApi.as_view(), name='news'),
-    path('api/available_school/', UniversitiesApi.as_view({'get': 'available_university'}), name='available_university'),
+    path('api/available_university/', UniversitiesApi.as_view({'get': 'available_university'}), name='available_university'),
+    path('users/me/', UserMeView.as_view(), name='user-me'),
 ]
