@@ -91,12 +91,15 @@ class Internships(models.Model):
     organization_logo = models.ImageField(null=True,blank=True)
     organization = models.CharField(max_length=500,null=True,blank=True)
     country = models.CharField(max_length=255,null=True,blank=True)
-    city = models.CharField(max_length=255,null=True,blank=True)
+    location = models.CharField(max_length=255,null=True,blank=True)
     description = models.TextField(null=True,blank=True)
-    paid_internship = models.BooleanField(null=True,blank=True)
-    salary = models.CharField(max_length=255,null=True,blank=True)
-    deadline = models.CharField(max_length=255,null=True,blank=True)
-    link_to_apply = models.CharField(max_length=1155,null=True,blank=True)
+    institution = models.CharField(max_length=1155,null=True,blank=True)
+    duration = models.CharField(max_length=255,null=True,blank=True)
+    benefits = models.TextField(null=True,blank=True)
+    eligibility = models.TextField(null=True,blank=True)
+    required_documents = models.TextField(null=True,blank=True)
+    how_to_apply = models.TextField(null=True,blank=True)
+    deadline = models.CharField(max_length=1255,null=True,blank=True)
 
     def __str__(self):
         return f'{self.title}'
@@ -108,7 +111,7 @@ class News(models.Model):
     photo2 = models.ImageField(null=True,blank=True)
     photo3 = models.ImageField(null=True,blank=True)
     description = models.TextField()
-    date = models.DateTimeField()
+    date = models.CharField(max_length=100)
 
 
     def __str__(self):
